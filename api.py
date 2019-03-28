@@ -1,6 +1,7 @@
 from flask import Flask, request
 from HLEmail import HLEmail
 
+#Create app instance
 app = Flask(__name__)
 
 #Instantiate HLEmail
