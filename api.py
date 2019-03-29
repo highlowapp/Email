@@ -5,7 +5,7 @@ from HLEmail import HLEmail
 app = Flask(__name__)
 
 #Instantiate HLEmail
-hlemail = HLEmail("sender@sender.com", "password")
+hlemail = HLEmail("email", "password")
 
 @app.route("/send_html_email", methods=["POST"])
 def send_html_email():
