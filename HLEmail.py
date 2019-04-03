@@ -6,16 +6,15 @@ from email.mime.text import MIMEText
 import html2text
 
 class HLEmail:
-  def __init__(self, sender, password, admin_password):
+  def __init__(self, sender, password):
     self.sender = sender
     self.password = password
-    self.admin_password = admin_password
     
   
   #The function that sends the email
-  def HLEmail_send(self, receiver, message): 
+  def send_email(self, receiver, message, admin_password): 
       adminPasswd = "admin"
-      if self.admin_password != adminPasswd:
+      if admin_password != adminPasswd:
         print("Invalid password") #We can add a return function in the future if we want to
       else:
         port = 465  # For SSL
@@ -29,15 +28,15 @@ class HLEmail:
           server.sendmail(sender_email, receiver_email, message.as_string())
 
   #The function that adds html to the message
-  def send_html_email(self, receiver, message):
+  def send_html_email(self, receiver, message, admin_password):
       adminPasswd = "admin"
-      if self.admin_password != adminPasswd:
+      if admin_password != adminPasswd:
         print("Invalid password")
       else:
         sender = self.sender
         password = self.password
-        adminPasswd = self.admin_password
-        send = HLEmail(sender, password, adminPasswd) 
+        adminPasswd = admin_password
+        send = HLEmail(sender, password) 
         #Fetch the message
         html_message = ""
         html_message = message
@@ -57,4 +56,4 @@ class HLEmail:
         mime_message.attach(message_plaintext)
         mime_message.attach(message_html)
 
-        send.HLEmail_send(  receiver=receiver,  message=mime_message )
+        send.send_email(  receiver=receiver,  message=mime_message, admin_password=admin_password )
