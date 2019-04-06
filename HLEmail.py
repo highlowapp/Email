@@ -6,9 +6,8 @@ from email.mime.text import MIMEText
 import html2text
 
 class HLEmail:
-	def __init__(self, sender, password):
+	def __init__(self, sender):
 		self.sender = sender
-		self.password = password
 	    
 	  
 	#The function that sends the email
@@ -36,7 +35,7 @@ class HLEmail:
 
 		#Define email headers
 		mime_message["Subject"] = "HTML/Plaintext email"
-		mime_message["From"] = sender
+		mime_message["From"] = self.sender
 		mime_message["To"] = receiver
 
 		#Attach plaintext and HTML to message
